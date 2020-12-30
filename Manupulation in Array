@@ -1,0 +1,171 @@
+#include<stdlib.h>
+#include<stdio.h>
+struct Array{
+    int *a;
+    int size;
+    int length;
+};
+void add(struct Array arr,int x)
+{
+      arr.a[arr.length]=x;
+        arr.length++;
+}
+void insert(struct Array arr,int index,int x)
+{
+if(index>=0 && index<=arr.length)
+{
+    for(int i=arr.length;i>index;i--)
+    {
+       arr.a[i]=arr.a[i-1];
+      
+    }
+     arr.a[index]=x;
+       arr.length++; 
+}
+}
+void delete(struct Array arr,int index)
+{
+if(index>=0&& index<=arr.length-1)
+    for(int i=index;i<arr.length-1;i++)
+    {
+        
+        arr.a[i]=arr.a[i+1];
+        }
+        arr.length--;
+}
+int search(struct Array arr,int val)
+{
+for(int i=0;i<=arr.length;i++)
+{
+if(val==arr.a[i])
+{
+    return 1;
+}
+
+}
+return -1;
+}
+int get(struct Array arr,int index)
+{
+if(index>=0 && index<=arr.length)
+{
+for(int i=0;i<=arr.length;i++)
+{
+    if(i==index)
+    {
+        return arr.a[i];
+    }
+}
+    return -1;
+}
+}
+void set(struct Array arr,int index,int x)
+{
+    if(index>=0&&index<arr.length)
+    {
+        for(int i=0;i<arr.length;i++)
+        {
+            if(i==index)
+            {
+                arr.a[i]=x;
+            }
+        }
+    }
+}
+int max(struct Array arr)
+{
+    int x=0;
+for(int i=0;i<arr.length;i++)
+{
+    x=arr.a[0];
+    if(arr.a[i]>x)
+    {
+        x=arr.a[i];
+    }
+}
+ return arr.a[x];
+}
+int min(struct Array arr)
+{
+    int x=0;
+for(int i=0;i<arr.length;i++)
+{
+    x=arr.a[0];
+    if(x>arr.a[i])
+    {
+        x=arr.a[i];
+    }
+}
+ return x;
+}
+void reverse(struct Array arr)
+{
+    int i,j;
+    int temp=0;
+for(i=0,j=arr.length-1;i<j;i++,j--)
+{
+ 
+temp=arr.a[i];
+arr.a[i]=arr.a[j];
+arr.a[j]=temp;
+}
+}
+void display(struct Array arr)
+{
+printf("\nElements are:\n");
+for(int i=0;i<=arr.length;i++)
+{
+printf("%d\n",arr.a[i]);
+}
+}
+/*int iSearch(struct Array arr,int index)
+{
+    int temp=0;
+if(index>0&& index<arr.length)
+{
+    for(int i=0;i<arr.length;i++)
+    {
+        if(i==index)
+        {
+            temp=arr.a[i--];
+            arr.a[i--]=arr.a[i];
+            arr.a[i]=temp;
+            
+        }
+        return arr.a[i];
+    }
+    
+}
+}*/
+int main()
+{
+struct Array arr;
+int n,i;
+printf("Enter size of array:");
+scanf("%d",&arr.size);
+arr.a=(int *)malloc(arr.size*sizeof(int));
+arr.length=0;
+printf("Enter no. of numbers:");
+scanf("%d",&n);
+for(i=0;i<n;i++)
+{
+    scanf("%d",&arr.a[i]);
+}
+arr.length=n;
+
+/*insert(arr,3,1);
+add(arr,20);
+delete(arr,2);
+display(arr);*/
+//printf("%d",search(arr,4));
+//printf("%d",get(arr,3));
+/*set(arr,2,14);
+display(arr);*/
+/*printf("Max value is:\n%d\n",max(arr));
+printf("Min value is:\n%d",min(arr));
+*/
+//reverse(arr);
+printf("%d",iSearch(arr,7));
+display(arr);
+return 0;
+}
